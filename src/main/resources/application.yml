@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: esmcp
+  elasticsearch:
+    uris: http://localhost:9200
+    api-key: VmY1dFlwd0JzbnJ3RGpmUzFxQ0U6azlPVFJXV3ZoUzhsOXgtc1FvZkVjUQ==
+
+  # MCP Server Configuration
+  ai:
+    mcp:
+      server:
+        type: sync
+        transport: streamable
+        protocol: streamable
+        streamable-http:
+          mcp-endpoint: /mcp
+          keep-alive-interval: 30s
+
+server:
+  port: 8080
+
+# Logging configuration
+logging:
+  level:
+    root: INFO
+    com.vatsal.esmcp: DEBUG
+    org.springframework.ai.mcp: DEBUG
+    org.springframework.data.elasticsearch: INFO
+    org.elasticsearch: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+# Application configuration
+app:
+  elasticsearch:
+    index-name: products
