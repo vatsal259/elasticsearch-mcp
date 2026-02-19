@@ -1,36 +1,29 @@
 spring:
   application:
-    name: esmcp
-  elasticsearch:
-    uris: http://localhost:9200
-    api-key: VmY1dFlwd0JzbnJ3RGpmUzFxQ0U6azlPVFJXV3ZoUzhsOXgtc1FvZkVjUQ==
-
-  # MCP Server Configuration
+    name: elasticsearch-mcp-server
+  main:
+    web-application-type: reactive
   ai:
     mcp:
       server:
-        type: sync
-        transport: streamable
-        protocol: streamable
-        streamable-http:
-          mcp-endpoint: /mcp
-          keep-alive-interval: 30s
+        enabled: true
+        type: SYNC
+        # Streamable HTTP (not SSE – SSE is deprecated by MCP)
+        protocol: STREAMABLE
+        transport: streamable-http
+        endpoint: /mcp
+        annotation-scanner:
+          enabled: true
 
 server:
   port: 8080
 
-# Logging configuration
+# Avoid 401 from Actuator's Elasticsearch health (it uses a separate client without your API key)
+management:
+  health:
+    elasticsearch:
+      enabled: false
+
 logging:
   level:
-    root: INFO
-    com.vatsal.esmcp: DEBUG
     org.springframework.ai.mcp: DEBUG
-    org.springframework.data.elasticsearch: INFO
-    org.elasticsearch: WARN
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
-
-# Application configuration
-app:
-  elasticsearch:
-    index-name: products

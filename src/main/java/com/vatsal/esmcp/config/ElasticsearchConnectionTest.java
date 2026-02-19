@@ -19,17 +19,7 @@ public class ElasticsearchConnectionTest {
     public void testConnection() {
         try {
             InfoResponse info = elasticsearchClient.info();
-            System.out.println("========================================");
-            System.out.println("✅ Successfully connected to Elasticsearch!");
-            System.out.println("Cluster Name: " + info.clusterName());
-            System.out.println("Version: " + info.version().number());
-            System.out.println("Cluster UUID: " + info.clusterUuid());
-            System.out.println("========================================");
         } catch (Exception e) {
-            System.err.println("========================================");
-            System.err.println("❌ Failed to connect to Elasticsearch");
-            System.err.println("Error: " + e.getMessage());
-            System.err.println("========================================");
         }
     }
 }
