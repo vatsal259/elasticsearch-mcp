@@ -16,7 +16,7 @@ public class ElasticsearchConfig {
 
     // 🔐 Elasticsearch API Key (Base64 encoded)
     private static final String API_KEY =
-            "VmY1dFlwd0JzbnJ3RGpmUzFxQ0U6azlPVFJXV3ZoUzhsOXgtc1FvZkVjUQ==";
+            "<API_KEY>";
 
     @Bean
     public ElasticsearchClient elasticsearchClient() {
